@@ -143,13 +143,6 @@ DATABASES = {
 #S3 connection
 # settings.py
 
-AWS_ACCESS_KEY_ID = 'AKIAYH6OSFRE7VBEII55'
-AWS_SECRET_ACCESS_KEY = 'WkIb+I1OBfZFJmJpKhUIzcFHE9wackACbbg0vafq'
-AWS_STORAGE_BUCKET_NAME = 'empmanagementsystem'
-AWS_S3_REGION_NAME = 'ap-south-1' # e.g., 'us-east-1'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-# Tell Django to use S3 to store media files
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
