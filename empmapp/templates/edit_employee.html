@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+
+    <link rel="stylesheet" href="{% static 'css/employee_details.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Edit Employee</h1>
+    </div>
+
+    <div class="content">
+        <form method="post" action="{% url 'edit_employee' employee.email %}">
+            {% csrf_token %} {% for field in form %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}:</label> {{ field }} {% if field.errors %}
+            <span class="error">{{ field.errors.as_text }}</span> {% endif %} {% endfor %}
+
+            <button type="submit">Update Employee</button>
+        </form>
+    </div>
+</body>
+
+</html>

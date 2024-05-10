@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Details</title>
+
+    <link rel="stylesheet" href="{% static 'css/attendance.css' %}">
+    <a href="{% url 'home' %}" class="button_back">Back to Home</a>
+</head>
+
+<body>
+    <h1>Attendance Details</h1>
+
+    <table>
+        <tr>
+            <th>Employee</th>
+            <th>Date</th>
+            <th>Check-In Time</th>
+            <th>Check-Out Time</th>
+            <th>Present</th>
+        </tr>
+
+        {% for attendanc in attendence %}
+        <tr>
+            <td>{{ attendanc.employee.Name}}</td>
+            <td>{{ attendanc.date }}</td>
+            <td>{{ attendanc.check_in_time }}</td>
+            <td>{{ attendanc.check_out_timee }}</td>
+            <td>{{attendanc.Present}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

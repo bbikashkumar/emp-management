@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="{% static 'css/employee_details.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <div class="action-buttons">
+            <a href="{% url 'add_employee' %}" class="button add-button">Add Employee</a>
+            <a href="{% url 'home' %}" class="button back-button">Back to Home</a>
+        </div>
+    </div>
+
+    <table class="employee-table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Department</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.Name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.phone_num }}</td>
+            <td>{{ employee.department_name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>
+                <a href="{% url 'edit_employee' employee.email %}" class="button edit-button">Edit</a>
+                <a href="{% url 'delete_employee' employee.email %}" class="button delete-button">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>

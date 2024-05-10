@@ -1,0 +1,68 @@
+/* classic_department.css */
+
+body {
+    font-family: 'Times New Roman', serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.classic-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px blue;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #444;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #eaeaea;
+}
+
+.classic-button-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.classic-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #1f8922;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.classic-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.backtohome {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.classic-link:hover {
+    text-decoration: underline;
+}

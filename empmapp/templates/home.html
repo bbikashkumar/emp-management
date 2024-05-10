@@ -1,0 +1,212 @@
+{% extends 'Abase.html' %} {% block content %} {%load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Lgp90o33X+qT1jj5jr73dvlnVxdOw7jHR73CxiLZxZrJc+0WTYfAuOY4gNHbjp2V" crossorigin="anonymous">
+<div class="maincontainer">
+    <div class="image-conatiner">
+        <div class="left-container">
+            <h1 class="image-main-heading">Infinitum Software Solutions</h1>
+            <span class="image-subheading">Employee Management</span>
+        </div>
+        <div class="right-container">
+            <img style="opacity: 1.5;" src="{% static 'images/9649095_6909.jpg'%}" class="image" alt=""> 
+
+        </div>
+    </div>
+    <div class="features-container">
+
+        <div class="card1" id="EmployeCard">
+            <div class="feature-heading-container">
+                <div class="icon"><i class="fa-solid fa-bag-shopping"></i></div>
+                <h1 class="feature-heading">Employee Management</h1>
+            </div>
+            <hr>
+            <div class="content-container">
+                <p class="card-content">Our cutting-edge employee management system empowers organizations to effortlessly handle tasks such as attendance tracking, leave management, and performance evaluations, ensuring streamlined operations.</p>
+            </div>
+        </div>
+
+
+        <div class="card1" id="Departmentcard">
+            <div class="feature-heading-container">
+                <div class="icon"><i class="fa-solid fa-house"></i></div>
+                <h1 class="feature-heading">Department Management</h1>
+            </div>
+            <hr>
+            <div class="content-container">
+                <p class="card-content">Revolutionize departmental efficiency with our advanced department management system. Seamlessly organize tasks, allocate resources, and monitor progress to achieve optimal workflow.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="card1" id="Attendancecard">
+            <div class="feature-heading-container">
+                <div class="icon"><i class="fa-solid fa-clipboard-user"></i></div>
+                <h1 class="feature-heading">Attendance Management</h1>
+            </div>
+            <hr>
+            <div class="content-container">
+                <p class="card-content">Invest in a robust attendance management system that not only saves time but also fosters a culture of punctuality, ultimately contributing to a more efficient and organized workplace.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    document.getElementById("EmployeCard").addEventListener('click', function() {
+        window.location.href = "/add/employedetails/";
+    });
+
+    document.getElementById("Departmentcard").addEventListener('click', function() {
+        window.location.href = "/add_dept/department_details/";
+    });
+
+    document.getElementById("Attendancecard").addEventListener('click', function() {
+        window.location.href = "/attendence_details/";
+    });
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Chatbot</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            border: 1px solid #0a0000;
+            border-radius: 5px;
+            padding: 20px;
+
+            
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #0b0000;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+        }
+
+        .message {
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 60px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        h1{
+            text-align: center;
+        }
+        #send-button{
+            position: absolute;
+            top: 500;
+            right: 210;
+        }
+        #user-input{
+            width: 1000px;
+            margin-right: 10px;
+        }
+        footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    
+}
+
+    </style>
+</head>
+<body>
+    <br><br>
+    <h1>Welcome to HR chatbot</h1>
+    <div class="chat-container" id="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="chat-message">
+                <div class="message">Hello! How can I help you?</div>
+            </div>
+        </div>
+        <br><br>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
+    <script>
+        document.getElementById('send-button').addEventListener('click', function() {
+            sendMessage();
+        });
+
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            var userMessage = document.getElementById('user-input').value;
+            document.getElementById('chat-box').innerHTML += '<p><b>You:</b> ' + userMessage + '</p>';
+
+            // Clear user input field
+         document.getElementById('user-input').value = '';
+
+            // Send user message to backend
+            fetch('/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_input: userMessage
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                var botResponse = data.bot_response;
+        
+                console.log(data.bot_response)
+                document.getElementById('chat-box').innerHTML += '<p><b>HRBot:</b> ' + botResponse + '</p>';
+            });
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+
+
+</html>
+<script src="https://kit.fontawesome.com/b6bcfadf24.js" crossorigin="anonymous"></script>
+{% endblock %}

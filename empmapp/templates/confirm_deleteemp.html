@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Employee</title>
+
+    <link rel="stylesheet" href="{% static 'css/confirm_deleteemp.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Delete Employee</h1>
+    </div>
+
+    <p>Are you sure you want to delete the employee "{{ employee.Name }}"?</p>
+
+    <form method="post" action="{% url 'confirm_delete_employee' employee.email %}">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+
+    <a href="{% url 'employee_details' %}" class="cancel-button">Cancel</a>
+</body>
+
+</html>
